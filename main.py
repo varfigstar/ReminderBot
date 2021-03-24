@@ -18,7 +18,7 @@ def write_in_json(data, mode="+a"):
 
 	with open("messages.json", mode, encoding="utf-8") as f:
 
-		json_data = json.dumps(data, ensure_ascii=True, indent=4)
+		json_data = json.dumps(data, ensure_ascii=False, indent=4)
 		f.write(json_data)
 
 		logging.debug("New recording")
@@ -120,6 +120,8 @@ def send_message(message):
 			})
 
 	write_in_json(json_data, mode="w")
+
+	bot.send_message(message.chat.id, f"Ваше сообщение '{message.text}' успешно сохранено и будет отсылаться вам каждый час!")
 
 
 
